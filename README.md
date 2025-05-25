@@ -87,7 +87,13 @@ Once these prerequisites are met, you can proceed with the Quickstart section be
 
 ### 2. Set Up Environment Variables
 
-This project uses environment variables to manage sensitive information like API keys and deployment URLs. The `.env.example` file in the root directory serves as a template listing all required variables. You will need to create your own `.env.local` file (which is ignored by Git) and populate it with your actual secrets.
+This project uses environment variables to manage sensitive information like API keys and deployment URLs. The `.env.example` file in the root directory lists all required variables.
+
+**Choose the setup method based on how you are using this template:**
+
+#### Option 1: For GitHub Users (Cloning Locally or Using as a GitHub Template)
+
+If you have cloned this repository from GitHub to your local machine or are using it as a GitHub template for a new repository that you will clone locally, you will create a `.env.local` file.
 
 1.  **Create your local environment file:**
     In your project's root directory, make a copy of `.env.example` and name it `.env.local`:
@@ -116,6 +122,28 @@ This project uses environment variables to manage sensitive information like API
     ```
 
     **Important Security Note:** The `.env.local` file contains your secret keys and should **NEVER** be committed to Git or shared publicly. The `.gitignore` file in this template is already configured to ignore `.env.local` (by ignoring `.env*` and then specifically un-ignoring `.env.example` with `!.env.example`), but it's crucial to be aware of this. Only the `.env.example` file (which contains no secrets) should be version controlled.
+
+#### Option 2: For Replit Users (Using as a Replit Template)
+
+If you are using this template directly on Replit (e.g., by clicking "Use Template" on Replit or forking a Repl), you will use Replit's Secrets manager instead of a `.env.local` file.
+
+1.  **Open the Secrets Panel:**
+    In your Replit workspace, locate the "Secrets" tab in the sidebar (it usually has a key icon 🔑). Click on it to open the secrets management panel.
+
+2.  **Add Environment Variables:**
+    For each variable listed in the `.env.example` file, you will add a new secret in Replit.
+    - The **Key** in Replit Secrets will be the variable name (e.g., `NEXT_PUBLIC_CONVEX_URL`).
+    - The **Value** in Replit Secrets will be your actual secret credential (e.g., `https://your-project-name.convex.cloud`).
+
+    You need to add the following variables from `.env.example` into your Replit Secrets:
+    - `NEXT_PUBLIC_CONVEX_URL`
+    - `NEXT_PUBLIC_CLERK_FRONTEND_API_URL`
+    - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+    - `CLERK_SECRET_KEY`
+
+    Refer to the comments within `.env.example` and the "Environment Variables" table further down in this README for guidance on where to find these values.
+
+    **Important Security Note:** Replit Secrets are designed to keep your sensitive information secure and are not stored in your project files. Do not manually create a `.env.local` file in Replit if you are using Replit Secrets, as Replit will automatically manage environment variables from the Secrets panel for your deployed application and development environment.
 
 ### 3. Run the Development Server
 
