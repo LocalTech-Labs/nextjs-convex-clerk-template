@@ -128,7 +128,7 @@ If you have cloned this repository from GitHub to your local machine or are usin
 If you are using this template directly on Replit (e.g., by clicking "Use Template" on Replit or forking a Repl), you will use Replit's Secrets manager instead of a `.env.local` file.
 
 1.  **Open the Secrets Panel:**
-    In your Replit workspace, locate the "Secrets" tab in the sidebar (it usually has a key icon 🔑). Click on it to open the secrets management panel.
+    In your Replit workspace, locate the "Secrets" tab in the sidebar (it usually has a lock icon 🔒). Click on it to open the secrets management panel.
 
 2.  **Add Environment Variables:**
     For each variable listed in the `.env.example` file, you will add a new secret in Replit.
