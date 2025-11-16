@@ -241,6 +241,11 @@ For detailed testing documentation, see [TESTING.md](./TESTING.md).
 - [shadcn/ui Documentation](https://ui.shadcn.com/docs)
 - [Tailwind CSS v4 Docs](https://tailwindcss.com/docs/v4-beta)
 
+### AI-First & Architecture Docs
+
+- [AI Agent Playbook](./docs/ai/README.md) – repository map, workflows, and checklists optimized for Claude/Cursor/GPT agents.
+- [Architecture Overview](./docs/architecture/OVERVIEW.md) – layered view of the frontend, Convex backend, and testing/tooling surfaces.
+
 ### Convex + Clerk Integration
 
 - [Convex & Clerk Integration Guide](https://docs.convex.dev/auth/clerk)

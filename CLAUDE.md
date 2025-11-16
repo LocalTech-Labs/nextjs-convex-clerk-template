@@ -1,5 +1,7 @@
 # Task Master AI - Claude Code Integration Guide
 
+> Need the high-level repo map or architectural context? Start with [`docs/ai/README.md`](./docs/ai/README.md) (AI Agent Playbook) and [`docs/architecture/OVERVIEW.md`](./docs/architecture/OVERVIEW.md).
+
 ## Essential Commands
 
 ### Core Workflow Commands
