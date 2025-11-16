@@ -412,13 +412,13 @@ Pull requests and issues welcome! Help improve this template for the community.
 
 ### ♻️ Keeping Derived Projects Up to Date
 
-If you cloned this repo as a starting point for another project, add this template as a Git remote (default name `template`) and run:
+If you cloned this repo as a starting point for another project, have your AI assistant follow [docs/template-sync.md](./docs/template-sync.md):
 
-```bash
-npm run sync:template
-```
+1. Ensure the template repo is added as a Git remote (commonly `template`).
+2. Fetch the latest template branch.
+3. Diff high-signal files (agent guides, docs, `.cursor/rules/`, etc.) against the template, then merge changes intentionally.
 
-The helper script (`scripts/sync-template.mjs`) copies the files listed in `template-sync.json` from the template branch into your app so you inherit documentation, rules, and structural improvements as the template evolves. See [docs/template-sync.md](./docs/template-sync.md) for setup details, automation tips, and conflict-resolution guidance.
+This human/agent-in-the-loop flow prevents surprise overwrites while still propagating documentation and structure improvements to downstream apps.
 
 ---
 
