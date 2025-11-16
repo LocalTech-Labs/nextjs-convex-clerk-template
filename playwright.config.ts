@@ -87,11 +87,20 @@ export default defineConfig({
   ],
 
   // Run your local dev server before starting the tests
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
+  webServer: process.env.CI
+    ? {
+        // In CI, only start Next.js (Convex might not be configured)
+        command: 'npm run build && npm run start',
+        url: 'http://localhost:3000',
+        reuseExistingServer: false,
+        timeout: 180 * 1000,
+      }
+    : {
+        // In local development, use the full dev server
+        command: 'npm run dev',
+        url: 'http://localhost:3000',
+        reuseExistingServer: true,
+        timeout: 120 * 1000,
+      },
 });
 
