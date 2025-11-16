@@ -8,7 +8,7 @@ This repository is optimized for autonomous or human-in-the-loop AI agents. Use 
 
 - **Stack**: Next.js 15 (App Router, React 19), Convex backend, Clerk auth, Tailwind v4, shadcn/ui components.
 - **Testing**: Vitest (unit/component) + Playwright (e2e). Helpers live in `test/`.
-- **Docs**: `README.md` (setup), `docs/ai/README.md` (flow), `docs/architecture/OVERVIEW.md` (system map), `TESTING*.md` (detailed QA).
+- **Docs**: `README.md` (setup), `docs/ai/README.md` (flow), `docs/architecture/OVERVIEW.md` (system map), `docs/template-sync.md` (template update playbook), `TESTING*.md` (detailed QA).
 - **Rules**: `.cursor/rules/*.mdc` apply automatically inside Cursor/Copilot-like tools.
 - **Template updates**: Run `npm run sync:template` (uses `template-sync.json`) to pull documentation/structure changes from the canonical template.
 
