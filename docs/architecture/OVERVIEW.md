@@ -21,7 +21,7 @@ This document explains how the template’s pieces fit together so that both hum
 │ Platform                                     │
 │  - Convex backend (convex/) + scheduler      │
 │  - Clerk authentication (middleware.ts)      │
-│  - Task Master automation (.cursor/, docs/)  │
+│  - AI assistant docs & rules (`.cursor/`, `docs/`) │
 ├─────────────────────────────────────────────┤
 │ Tooling / QA                                 │
 │  - Vitest + RTL (test/, __tests__ dirs)      │
@@ -115,6 +115,6 @@ Key contracts:
 - Keep new documents inside `docs/` with clear ownership sections so assistants can ingest targeted context.
 - When adding broader rules, place them in `.cursor/rules/` to ensure Cursor/Copilot automatically load them.
 - Prefer deterministic scripts (`npm run ...`) over ad-hoc shell commands; agents rely on them for reproducible steps.
-- Update Task Master tasks whenever architecture or workflow changes so future agents stay aligned.
+- Update agent-facing docs/notes whenever architecture or workflow changes so future contributors stay aligned.
 
 This overview should reduce the number of files an agent must open before contributing, and it defines the guardrails for future structural changes.

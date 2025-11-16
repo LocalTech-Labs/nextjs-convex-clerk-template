@@ -2,7 +2,7 @@
 
 > A single jumping-off point for any AI assistant (Claude, GPT, Gemini, etc.) that touches this codebase.
 
-This document complements the high-level [README](../../README.md), testing guide, and Task Master instructions. It favors short, actionable sections so agents can keep context density high.
+This document complements the high-level [README](../../README.md), testing guide, and the agent instruction files (`AGENTS.md`, `CLAUDE.md`). It favors short, actionable sections so agents can keep context density high.
 
 ---
 
@@ -11,7 +11,7 @@ This document complements the high-level [README](../../README.md), testing guid
 - **Frontend**: Next.js 15 (App Router) + React 19, Tailwind CSS v4, shadcn/ui components.
 - **Backend**: Convex (serverless data + functions) with Clerk auth enforced through `middleware.ts`.
 - **Testing**: Vitest (`test/`, feature-level `__tests__`) and Playwright (`e2e/`) with shared setup utilities.
-- **AI Tooling**: Task Master CLI/MCP (`AGENTS.md`, `.cursor/mcp.json`), Cursor rules in `.cursor/rules/`, and testing quickstarts in `TESTING*.md`.
+- **AI Enablement**: Agent quickstart docs (`AGENTS.md`, `CLAUDE.md`), Cursor rules in `.cursor/rules/`, and testing quickstarts in `TESTING*.md`.
 
 ---
 
@@ -27,7 +27,7 @@ This document complements the high-level [README](../../README.md), testing guid
 | `test/` | Vitest setup, fixtures, mocks. Import via `@/test/...`. | Configured in `vitest.config.ts`. |
 | `e2e/` | Playwright specs (home, accessibility, examples). | See `playwright.config.ts`. |
 | `public/` | Static assets. | Keep small & named. |
-| `.cursor/`, `AGENTS.md`, `CLAUDE.md` | Agent instructions, MCP config. | Load before coding. |
+| `.cursor/`, `AGENTS.md`, `CLAUDE.md` | Agent instructions, rule files. | Load before coding. |
 
 > Tip: The repo uses the `@/*` alias for the workspace root. Prefer it for predictable imports.
 
@@ -65,14 +65,12 @@ Always note whether Convex needs to be running (`npm run dev` already handles it
 
 ---
 
-## 4. Task & Planning Flows
+## 4. Planning & Collaboration
 
-- **Task Master**: All AI task orchestration lives in `AGENTS.md` / `CLAUDE.md`. Key commands:
-  - `task-master next` → fetch next task.
-  - `task-master update-subtask --id=<id> --prompt="notes"` → log reasoning to keep agents in sync.
-  - `task-master set-status --id=<id> --status=done` → mark completion.
-- **MCP**: `.cursor/mcp.json` exposes the Task Master MCP server. Ensure API keys are available (env var placeholders are in the file).
-- **Rules**: `.cursor/rules/*.mdc` are always-on guardrails (Convex conventions, Cursor formatting). Do not edit Convex-generated files directly; extend helpers instead.
+- **Agent instruction files**: `AGENTS.md` and `CLAUDE.md` summarize workflows, commands, and expectations. Load them alongside this playbook before editing.
+- **Runbooks & docs**: Capture non-obvious reasoning in `docs/` (architecture notes, feature ADRs) instead of burying it in commits. Future agents read these first.
+- **Status tracking**: Use issue trackers, PR descriptions, or inline TODO comments—there’s no built-in task CLI. Always include “next steps” when pausing work.
+- **Rules enforcement**: `.cursor/rules/*.mdc` are loaded automatically in Cursor/Copilot to enforce Convex patterns, formatting, and file-structure conventions.
 
 ---
 
@@ -127,7 +125,7 @@ Always note whether Convex needs to be running (`npm run dev` already handles it
 - [ ] Keep shadcn components unmodified unless absolutely necessary—prefer wrappers.
 - [ ] Verify both unit and e2e suites relevant to the change.
 - [ ] For Convex updates, regenerate types (`npx convex dev`) and note schema migration steps.
-- [ ] Maintain Task Master task notes so subsequent agents inherit context.
+- [ ] Leave breadcrumbs (docs, TODOs, PR notes) so subsequent agents inherit context.
 
 ---
 
@@ -136,7 +134,7 @@ Always note whether Convex needs to be running (`npm run dev` already handles it
 - [README](../../README.md) – stack overview & scripts
 - [TESTING.md](../../TESTING.md) – exhaustive testing instructions
 - [TESTING_QUICKSTART.md](../../TESTING_QUICKSTART.md) – minimal setup
-- [AGENTS.md](../../AGENTS.md) & [CLAUDE.md](../../CLAUDE.md) – Task Master details
+- [AGENTS.md](../../AGENTS.md) & [CLAUDE.md](../../CLAUDE.md) – AI assistant expectations & workflows
 - [.cursor/rules/cursor_rules.mdc](../../.cursor/rules/cursor_rules.mdc) – formatting/rule file conventions
 - [.cursor/rules/convex_rules.mdc](../../.cursor/rules/convex_rules.mdc) – Convex coding standards
 
