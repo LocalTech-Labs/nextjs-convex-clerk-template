@@ -1,0 +1,12 @@
+{
+  "remote": "template",
+  "branch": "main",
+  "paths": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/",
+    ".cursor/rules/",
+    "scripts/sync-template.mjs",
+    "template-sync.json"
+  ]
+}

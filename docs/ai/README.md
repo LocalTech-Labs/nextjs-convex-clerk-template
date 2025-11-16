@@ -135,6 +135,7 @@ Always note whether Convex needs to be running (`npm run dev` already handles it
 - [TESTING.md](../../TESTING.md) – exhaustive testing instructions
 - [TESTING_QUICKSTART.md](../../TESTING_QUICKSTART.md) – minimal setup
 - [AGENTS.md](../../AGENTS.md) & [CLAUDE.md](../../CLAUDE.md) – AI assistant expectations & workflows
+- [Template Sync Guide](../template-sync.md) – keep downstream projects aligned with template updates
 - [.cursor/rules/cursor_rules.mdc](../../.cursor/rules/cursor_rules.mdc) – formatting/rule file conventions
 - [.cursor/rules/convex_rules.mdc](../../.cursor/rules/convex_rules.mdc) – Convex coding standards
 

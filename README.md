@@ -245,6 +245,7 @@ For detailed testing documentation, see [TESTING.md](./TESTING.md).
 
 - [AI Agent Playbook](./docs/ai/README.md) – repository map, workflows, and checklists optimized for Claude/Cursor/GPT agents.
 - [Architecture Overview](./docs/architecture/OVERVIEW.md) – layered view of the frontend, Convex backend, and testing/tooling surfaces.
+- [Template Sync Guide](./docs/template-sync.md) – keep downstream projects aligned with future template updates.
 
 ### Convex + Clerk Integration
 
@@ -408,6 +409,16 @@ You are free to use, modify, and distribute this template as per the terms of th
 ## 🤝 Contributing
 
 Pull requests and issues welcome! Help improve this template for the community.
+
+### ♻️ Keeping Derived Projects Up to Date
+
+If you cloned this repo as a starting point for another project, add this template as a Git remote (default name `template`) and run:
+
+```bash
+npm run sync:template
+```
+
+The helper script (`scripts/sync-template.mjs`) copies the files listed in `template-sync.json` from the template branch into your app so you inherit documentation, rules, and structural improvements as the template evolves. See [docs/template-sync.md](./docs/template-sync.md) for setup details, automation tips, and conflict-resolution guidance.
 
 ---
 
