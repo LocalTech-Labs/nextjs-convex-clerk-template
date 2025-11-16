@@ -37,6 +37,8 @@ Update the following files/locations:
 - **[Clerk](https://clerk.com/docs)**: Authentication and user management
 - **[shadcn/ui](https://ui.shadcn.com/docs)**: Accessible, customizable React components
 - **[Tailwind CSS v4](https://tailwindcss.com/docs/v4-beta)**: Utility-first styling
+- **[Vitest](https://vitest.dev/)**: Fast unit test runner with React Testing Library
+- **[Playwright](https://playwright.dev/)**: Modern end-to-end testing framework
 
 ---
 
@@ -118,7 +120,7 @@ If you have cloned this repository from GitHub to your local machine or are usin
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
     # Clerk Secret Key
-    CLERK_SECRET_KEY="sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    CLERK_SECRET_KEY="clerk_secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     ```
 
     **Important Security Note:** The `.env.local` file contains your secret keys and should **NEVER** be committed to Git or shared publicly. The `.gitignore` file in this template is already configured to ignore `.env.local` (by ignoring `.env*` and then specifically un-ignoring `.env.example` with `!.env.example`), but it's crucial to be aware of this. Only the `.env.example` file (which contains no secrets) should be version controlled.
@@ -165,6 +167,8 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 In the project directory, you can run the following scripts via `npm run <script-name>` (or `yarn <script-name>`, `pnpm run <script-name>`, `bun run <script-name>`):
 
+### Development & Build
+
 - **`dev`**: Runs the Convex and Next.js development servers concurrently. Output from each server is labeled (`CONVEX`, `NEXT`) and color-coded for readability.
   ```bash
   concurrently --names "CONVEX,NEXT" --prefix-colors "auto" "convex dev" "next dev"
@@ -181,6 +185,51 @@ In the project directory, you can run the following scripts via `npm run <script
   ```bash
   next lint
   ```
+
+### Testing
+
+- **`test`**: Runs unit tests with Vitest.
+  ```bash
+  vitest
+  ```
+- **`test:watch`**: Runs unit tests in watch mode.
+  ```bash
+  vitest --watch
+  ```
+- **`test:ui`**: Opens Vitest UI dashboard for interactive test running.
+  ```bash
+  vitest --ui
+  ```
+- **`test:coverage`**: Generates test coverage report.
+  ```bash
+  vitest --coverage
+  ```
+- **`test:e2e`**: Runs end-to-end tests with Playwright.
+  ```bash
+  playwright test
+  ```
+- **`test:e2e:ui`**: Runs e2e tests with Playwright UI mode.
+  ```bash
+  playwright test --ui
+  ```
+- **`test:e2e:headed`**: Runs e2e tests in headed mode (visible browser).
+  ```bash
+  playwright test --headed
+  ```
+- **`test:e2e:debug`**: Runs e2e tests in debug mode.
+  ```bash
+  playwright test --debug
+  ```
+- **`test:all`**: Runs all tests (unit + e2e).
+  ```bash
+  npm run test && npm run test:e2e
+  ```
+- **`playwright:install`**: Installs Playwright browsers.
+  ```bash
+  playwright install --with-deps
+  ```
+
+For detailed testing documentation, see [TESTING.md](./TESTING.md).
 
 ---
 
