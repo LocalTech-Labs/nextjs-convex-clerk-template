@@ -241,6 +241,12 @@ For detailed testing documentation, see [TESTING.md](./TESTING.md).
 - [shadcn/ui Documentation](https://ui.shadcn.com/docs)
 - [Tailwind CSS v4 Docs](https://tailwindcss.com/docs/v4-beta)
 
+### AI-First & Architecture Docs
+
+- [AI Agent Playbook](./docs/ai/README.md) – repository map, workflows, and checklists optimized for Claude/Cursor/GPT agents.
+- [Architecture Overview](./docs/architecture/OVERVIEW.md) – layered view of the frontend, Convex backend, and testing/tooling surfaces.
+- [Template Sync Guide](./docs/template-sync.md) – keep downstream projects aligned with future template updates.
+
 ### Convex + Clerk Integration
 
 - [Convex & Clerk Integration Guide](https://docs.convex.dev/auth/clerk)
@@ -403,6 +409,16 @@ You are free to use, modify, and distribute this template as per the terms of th
 ## 🤝 Contributing
 
 Pull requests and issues welcome! Help improve this template for the community.
+
+### ♻️ Keeping Derived Projects Up to Date
+
+If you cloned this repo as a starting point for another project, have your AI assistant run the `/template-sync` slash command (available in Cursor and Claude Code) and follow [docs/template-sync.md](./docs/template-sync.md):
+
+1. Ensure the template repo is added as a Git remote (commonly `template`).
+2. Fetch the latest template branch.
+3. Diff high-signal files (agent guides, docs, `.cursor/rules/`, etc.) against the template, then merge changes intentionally.
+
+This human/agent-in-the-loop flow prevents surprise overwrites while still propagating documentation and structure improvements to downstream apps.
 
 ---
 
