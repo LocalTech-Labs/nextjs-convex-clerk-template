@@ -412,7 +412,7 @@ Pull requests and issues welcome! Help improve this template for the community.
 
 ### ♻️ Keeping Derived Projects Up to Date
 
-If you cloned this repo as a starting point for another project, have your AI assistant follow [docs/template-sync.md](./docs/template-sync.md):
+If you cloned this repo as a starting point for another project, have your AI assistant run the `/template-sync` slash command (available in Cursor and Claude Code) and follow [docs/template-sync.md](./docs/template-sync.md):
 
 1. Ensure the template repo is added as a Git remote (commonly `template`).
 2. Fetch the latest template branch.

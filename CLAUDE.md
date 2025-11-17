@@ -10,7 +10,7 @@ This repository is optimized for autonomous or human-in-the-loop AI agents. Use 
 - **Testing**: Vitest (unit/component) + Playwright (e2e). Helpers live in `test/`.
 - **Docs**: `README.md` (setup), `docs/ai/README.md` (flow), `docs/architecture/OVERVIEW.md` (system map), `docs/template-sync.md` (template update playbook), `TESTING*.md` (detailed QA).
 - **Rules**: `.cursor/rules/*.mdc` apply automatically inside Cursor/Copilot-like tools.
-- **Template updates**: Follow `docs/template-sync.md` to fetch from the template repo, diff high-signal files, and merge updates intentionally.
+- **Template updates**: Run the `/template-sync` slash command (Cursor/Claude Code) and follow `docs/template-sync.md` for step-by-step approval before applying template changes.
 
 ---
 

@@ -39,6 +39,8 @@ This review-first workflow keeps the agent in the loop so important local tweaks
    ```
 2. **Optionally pin the docs you care about**
    - Keep a short list (README, docs/, `.cursor/rules/`, etc.) so every assistant knows what to diff.
+3. **Load the `/template-sync` slash command**
+   - In Cursor or Claude Code, run `/template-sync` to follow the interactive workflow automatically. The command already pauses between files and asks for approval before applying changes.
 
 ---
 
