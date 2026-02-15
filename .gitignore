@@ -65,6 +65,9 @@ node_modules/
 *.sw?
 # OS specific
 
+# Claude container credentials (file-based auth for Docker)
+.claude-container/
+
 # Task files
 # tasks.json
 # tasks/ 
