@@ -21,7 +21,9 @@
 		"build:worker": "opennextjs-cloudflare build",
 		"preview": "opennextjs-cloudflare preview",
 		"deploy": "opennextjs-cloudflare deploy",
-		"playwright:install": "playwright install --with-deps"
+		"playwright:install": "playwright install --with-deps",
+		"analyze": "ANALYZE=true next build",
+		"cldyo": "claude --dangerously-skip-permissions --model claude-opus-4-6"
 	},
 	"dependencies": {
 		"@clerk/backend": "^2.31.0",
@@ -78,6 +80,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.0",
+		"@next/bundle-analyzer": "^16.1.6",
 		"@opennextjs/cloudflare": "^1.16.5",
 		"@playwright/test": "^1.56.1",
 		"@tailwindcss/postcss": "^4.1.17",

@@ -1,12 +1,20 @@
 import { describe, expect, it } from "vitest";
-import Home from "@/app/page";
+import HomePage from "@/app/(marketing)/page";
 import { render } from "@/test/utils/test-utils";
 
 describe("Home Page", () => {
-	it("renders the main heading", () => {
-		render(<Home />);
-		// Add your specific assertions based on your home page content
-		// This is a placeholder test
-		expect(document.querySelector("main")).toBeInTheDocument();
+	it("renders the hero section", () => {
+		render(<HomePage />);
+		expect(document.querySelector("h1")?.textContent).toContain("Ship your SaaS");
+	});
+
+	it("renders the features section", () => {
+		render(<HomePage />);
+		expect(document.getElementById("features")).toBeInTheDocument();
+	});
+
+	it("renders the pricing section", () => {
+		render(<HomePage />);
+		expect(document.getElementById("pricing")).toBeInTheDocument();
 	});
 });

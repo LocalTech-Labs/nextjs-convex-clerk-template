@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/providers";
-import Header from "@/components/layout/header";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -15,8 +14,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "TemplateApp - Your App Title",
-	description: "Describe your app here.",
+	metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://yourapp.com"),
+	title: {
+		default: "YourApp - Launch Your SaaS Fast",
+		template: "%s | YourApp",
+	},
+	description: "The fastest way to launch your micro-SaaS. Built with Next.js, Convex, and Clerk.",
+	openGraph: {
+		type: "website",
+		locale: "en_US",
+		siteName: "YourApp",
+		images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+	},
+	twitter: {
+		card: "summary_large_image",
+	},
+	robots: {
+		index: true,
+		follow: true,
+	},
 };
 
 export default function RootLayout({
@@ -27,10 +43,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
 			<body>
-				<Providers>
-					<Header />
-					<main className="flex-1">{children}</main>
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);

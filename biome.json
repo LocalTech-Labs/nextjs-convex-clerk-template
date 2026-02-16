@@ -75,6 +75,16 @@
 					}
 				}
 			}
+		},
+		{
+			"includes": ["components/marketing/structured-data.tsx"],
+			"linter": {
+				"rules": {
+					"security": {
+						"noDangerouslySetInnerHtml": "off"
+					}
+				}
+			}
 		}
 	],
 	"vcs": {

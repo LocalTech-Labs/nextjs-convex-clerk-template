@@ -14,9 +14,11 @@ export const current = query({
 export const upsertFromClerk = internalMutation({
 	args: { data: v.any() as Validator<UserJSON> },
 	async handler(ctx, { data }) {
+		const plan = (data.public_metadata as Record<string, unknown>)?.plan as string | undefined;
 		const userAttributes = {
 			name: `${data.first_name ?? ""} ${data.last_name ?? ""}`.trim(),
 			externalId: data.id,
+			...(plan === "free" || plan === "pro" ? { plan } : {}),
 		};
 
 		const user = await userByExternalId(ctx, data.id);

@@ -9,11 +9,24 @@ export default function Header() {
 	return (
 		<header className="bg-background sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 			<div className="container flex h-14 max-w-screen-2xl items-center">
-				<Link href="/" className="mr-6 flex items-center space-x-2">
-					{/* You can add an SVG logo here if you have one */}
-					<span className="font-bold sm:inline-block">TemplateApp</span>
+				<Link href="/dashboard" className="mr-6 flex items-center space-x-2">
+					<span className="font-bold sm:inline-block">YourApp</span>
 				</Link>
-				<div className="flex flex-1 items-center justify-end space-x-4">
+				<nav className="flex flex-1 items-center gap-6 text-sm">
+					<Link
+						href="/dashboard"
+						className="text-muted-foreground hover:text-foreground transition-colors"
+					>
+						Dashboard
+					</Link>
+					<Link
+						href="/settings"
+						className="text-muted-foreground hover:text-foreground transition-colors"
+					>
+						Settings
+					</Link>
+				</nav>
+				<div className="flex items-center space-x-4">
 					<Authenticated>
 						<UserButton afterSignOutUrl="/" />
 					</Authenticated>

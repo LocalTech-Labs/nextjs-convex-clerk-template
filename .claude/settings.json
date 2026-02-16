@@ -1,0 +1,34 @@
+{
+	"$schema": "https://json.schemastore.org/claude-code-settings.json",
+	"permissions": {
+		"allow": [
+			"Bash(bun run dev)",
+			"Bash(bun run build)",
+			"Bash(bun run check)",
+			"Bash(bun run format)",
+			"Bash(bun run lint)",
+			"Bash(bun run test*)",
+			"Bash(bun run build:worker)",
+			"Bash(bun run preview)",
+			"Bash(bun run analyze)",
+			"Bash(bun install*)",
+			"Bash(bun add *)",
+			"Bash(bun remove *)",
+			"Bash(bunx shadcn@latest add *)",
+			"Bash(bunx convex *)",
+			"Bash(bunx wrangler *)",
+			"Bash(bunx playwright install*)",
+			"Bash(npx tsc *)",
+			"Bash(git status*)",
+			"Bash(git diff*)",
+			"Bash(git log*)",
+			"Bash(git branch*)",
+			"Bash(git stash*)"
+		],
+		"deny": [
+			"Read(.env.local)",
+			"Read(.env)",
+			"Read(.env.production)"
+		]
+	}
+}
