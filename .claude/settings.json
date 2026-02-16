@@ -1,5 +1,27 @@
 {
 	"$schema": "https://json.schemastore.org/claude-code-settings.json",
+	"hooks": {
+		"PostToolUse": [
+			{
+				"matcher": "Write|Edit",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-biome.sh",
+						"timeout": 60,
+						"statusMessage": "Running Biome checks..."
+					},
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-tests.sh",
+						"timeout": 300,
+						"async": true,
+						"statusMessage": "Running unit tests..."
+					}
+				]
+			}
+		]
+	},
 	"permissions": {
 		"allow": [
 			"Bash(bun run dev)",
@@ -23,7 +45,11 @@
 			"Bash(git diff*)",
 			"Bash(git log*)",
 			"Bash(git branch*)",
-			"Bash(git stash*)"
+			"Bash(git stash*)",
+			"Bash(bash .claude/skills/*)",
+			"Bash(bash .agents/skills/*)",
+			"Bash(diff *)",
+			"Bash(cp *)"
 		],
 		"deny": [
 			"Read(.env.local)",

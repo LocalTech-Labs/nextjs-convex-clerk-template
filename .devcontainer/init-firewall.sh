@@ -64,7 +64,21 @@ for domain in \
     "update.code.visualstudio.com" \
     "cursor.sh" \
     "api2.cursor.sh" \
-    "repo.cursor.sh"; do
+    "repo.cursor.sh" \
+    "clerk.com" \
+    "api.clerk.com" \
+    "api.clerk.dev" \
+    "clerk.dev" \
+    "accounts.clerk.dev" \
+    "convex.dev" \
+    "convex.cloud" \
+    "dashboard.convex.dev" \
+    "apiauth.convex.dev" \
+    "api.convex.dev" \
+    "fonts.googleapis.com" \
+    "fonts.gstatic.com" \
+    "us.i.posthog.com" \
+    "us-assets.i.posthog.com"; do
     ips=$(dig +noall +answer A "$domain" 2>/dev/null | awk '$4 == "A" {print $5}')
     if [ -z "$ips" ]; then
         echo "WARNING: Failed to resolve $domain — skipping"
