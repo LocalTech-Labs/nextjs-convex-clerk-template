@@ -75,10 +75,15 @@ for domain in \
     "dashboard.convex.dev" \
     "apiauth.convex.dev" \
     "api.convex.dev" \
+    "focused-hornet-477.convex.cloud" \
     "fonts.googleapis.com" \
     "fonts.gstatic.com" \
     "us.i.posthog.com" \
-    "us-assets.i.posthog.com"; do
+    "us-assets.i.posthog.com" \
+    "github.com" \
+    "github.dev" \
+    "api.github.com" \
+    "github.githubassets.com"; do
     ips=$(dig +noall +answer A "$domain" 2>/dev/null | awk '$4 == "A" {print $5}')
     if [ -z "$ips" ]; then
         echo "WARNING: Failed to resolve $domain — skipping"

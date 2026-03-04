@@ -26,7 +26,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   nano \
   vim \
   ripgrep \
+  python3 \
+  python3-pip \
+  python3-venv \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages needed by agent scripts (e.g., skill validation)
+RUN python3 -m venv /opt/venv && /opt/venv/bin/pip install pyyaml
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Ensure default node user has access to /usr/local/share
 RUN mkdir -p /usr/local/share/npm-global && \
@@ -43,9 +50,9 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
 # Set DEVCONTAINER environment variable
 ENV DEVCONTAINER=true
 
-# Create workspace and config directories
-RUN mkdir -p /workspace /home/node/.claude && \
-  chown -R node:node /workspace /home/node/.claude
+# Create workspace and config directories (including gh config for volume mount)
+RUN mkdir -p /workspace /home/node/.claude /home/node/.config/gh && \
+  chown -R node:node /workspace /home/node/.claude /home/node/.config/gh
 
 WORKDIR /workspace
 
@@ -85,10 +92,20 @@ ENV PATH="/home/node/.bun/bin:$PATH"
 # Install Claude Code globally via npm
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
 
+# Install Playwright system dependencies (requires root)
+USER root
+RUN npx playwright install-deps && \
+  rm -rf /tmp/*
+
+# Install Playwright browsers as node user so they're accessible at runtime
+USER node
+RUN npx playwright install
+
 # Copy and set up firewall script
 COPY init-firewall.sh /usr/local/bin/
 USER root
 RUN chmod +x /usr/local/bin/init-firewall.sh && \
   echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
+  echo "node ALL=(root) NOPASSWD: /bin/chown -R node\:node /home/node/.config/gh" >> /etc/sudoers.d/node-firewall && \
   chmod 0440 /etc/sudoers.d/node-firewall
 USER node
