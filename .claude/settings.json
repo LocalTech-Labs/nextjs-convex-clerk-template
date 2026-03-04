@@ -27,7 +27,14 @@
       "Bash(bash .claude/skills/*)",
       "Bash(bash .agents/skills/*)",
       "Bash(diff *)",
-      "Bash(cp *)"
+      "Bash(cp *)",
+      "Bash(gh pr list*)",
+      "Bash(gh pr view*)",
+      "Bash(gh pr diff*)",
+      "Bash(gh pr checkout*)",
+      "Bash(gh pr merge*)",
+      "Bash(gh api *)",
+      "Bash(mkdir -p *)"
     ],
     "deny": [
       "Read(.env.local)",
