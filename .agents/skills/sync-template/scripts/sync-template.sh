@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# sync-template.sh — Compare and sync infrastructure files from the template repo.
+# sync-template.sh — Compare and sync infrastructure files from the GitHub template repo.
 # Usage: sync-template.sh <command> [args]
 #
 # Commands:
-#   scan [template-dir]            Compare all tracked files between repos
-#   apply-category-a [template-dir] Copy all changed Category A files from template
-#   apply-file <path> [template-dir] Copy a single file from template
-#   diff-file <path> [template-dir]  Show unified diff for a single file
-#   help                            Show this help message
+#   scan [branch|local-dir]            Compare all tracked files between repos
+#   apply-category-a [branch|local-dir] Copy all changed Category A files from template
+#   apply-file <path> [branch|local-dir] Copy a single file from template
+#   diff-file <path> [branch|local-dir]  Show unified diff for a single file
+#   help                               Show this help message
 
-DEFAULT_TEMPLATE_DIR="../nextjs-convex-clerk-template"
+GITHUB_REPO="LocalTech-Labs/nextjs-convex-clerk-template"
+DEFAULT_BRANCH="main"
+TEMP_DIR=""
 
 # Category A: Safe infrastructure files — batch copy
 CATEGORY_A_FILES=(
@@ -42,14 +44,33 @@ CATEGORY_B_FILES=(
 	"next.config.ts"
 )
 
+cleanup() {
+	if [[ -n "$TEMP_DIR" && -d "$TEMP_DIR" ]]; then
+		rm -rf "$TEMP_DIR"
+	fi
+}
+trap cleanup EXIT
+
 resolve_template_dir() {
-	local dir="${1:-$DEFAULT_TEMPLATE_DIR}"
-	if [[ ! -d "$dir" ]]; then
-		echo "ERROR: Template directory not found: $dir" >&2
-		echo "Expected the template repo to be cloned as a sibling directory." >&2
+	local arg="${1:-}"
+
+	# If arg is an existing local directory, use it directly
+	if [[ -n "$arg" && -d "$arg" ]]; then
+		echo "$arg"
+		return
+	fi
+
+	# Otherwise treat arg as a branch name (or use default)
+	local branch="${arg:-$DEFAULT_BRANCH}"
+
+	TEMP_DIR=$(mktemp -d)
+	echo "Cloning $GITHUB_REPO@$branch..." >&2
+	if ! git clone --depth 1 --branch "$branch" \
+		"https://github.com/$GITHUB_REPO.git" "$TEMP_DIR" 2>&1 | tail -1 >&2; then
+		echo "ERROR: Failed to clone $GITHUB_REPO branch '$branch'" >&2
 		exit 1
 	fi
-	echo "$dir"
+	echo "$TEMP_DIR"
 }
 
 compare_path() {
@@ -81,7 +102,7 @@ cmd_scan() {
 	local template_dir
 	template_dir=$(resolve_template_dir "${1:-}")
 
-	echo "Template: $template_dir"
+	echo "Template: $GITHUB_REPO ($(git -C "$template_dir" log --oneline -1 2>/dev/null || echo 'local'))"
 	echo ""
 
 	echo "=== Category A (safe — batch copy) ==="
@@ -149,7 +170,7 @@ cmd_apply_file() {
 	local path="${1:-}"
 	if [[ -z "$path" ]]; then
 		echo "ERROR: No file path specified." >&2
-		echo "Usage: sync-template.sh apply-file <path> [template-dir]" >&2
+		echo "Usage: sync-template.sh apply-file <path> [branch|local-dir]" >&2
 		exit 1
 	fi
 
@@ -180,7 +201,7 @@ cmd_diff_file() {
 	local path="${1:-}"
 	if [[ -z "$path" ]]; then
 		echo "ERROR: No file path specified." >&2
-		echo "Usage: sync-template.sh diff-file <path> [template-dir]" >&2
+		echo "Usage: sync-template.sh diff-file <path> [branch|local-dir]" >&2
 		exit 1
 	fi
 
@@ -220,13 +241,13 @@ cmd_help() {
 	echo "Usage: sync-template.sh <command> [args]"
 	echo ""
 	echo "Commands:"
-	echo "  scan [template-dir]              Compare all tracked files between repos"
-	echo "  apply-category-a [template-dir]  Copy all changed Category A files from template"
-	echo "  apply-file <path> [template-dir] Copy a single file from template"
-	echo "  diff-file <path> [template-dir]  Show unified diff for a single file"
-	echo "  help                             Show this help message"
+	echo "  scan [branch|local-dir]              Compare all tracked files between repos"
+	echo "  apply-category-a [branch|local-dir]  Copy all changed Category A files from template"
+	echo "  apply-file <path> [branch|local-dir] Copy a single file from template"
+	echo "  diff-file <path> [branch|local-dir]  Show unified diff for a single file"
+	echo "  help                                 Show this help message"
 	echo ""
-	echo "Default template-dir: $DEFAULT_TEMPLATE_DIR"
+	echo "Source: https://github.com/$GITHUB_REPO (default branch: $DEFAULT_BRANCH)"
 }
 
 # Main dispatch
