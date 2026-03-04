@@ -1,4 +1,4 @@
-import type { QueryCtx } from "./_generated/server";
+import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { query } from "./_generated/server";
 import { getCurrentUser } from "./users";
 
@@ -25,7 +25,7 @@ export const isPro = query({
 	},
 });
 
-export async function requirePro(ctx: QueryCtx) {
+export async function requirePro(ctx: QueryCtx | MutationCtx) {
 	const user = await getCurrentUser(ctx);
 	if (!user) throw new Error("Not authenticated");
 

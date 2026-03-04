@@ -27,6 +27,12 @@ export default defineConfig({
 				".next/**",
 				"convex/_generated/**",
 			],
+			thresholds: {
+				lines: 60,
+				functions: 60,
+				branches: 60,
+				statements: 60,
+			},
 		},
 
 		// Include/exclude patterns

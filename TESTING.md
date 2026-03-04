@@ -18,7 +18,7 @@ This project uses a comprehensive testing setup with **Vitest** for unit/compone
 After cloning the repository, install dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
 ### Install Playwright Browsers
@@ -26,7 +26,7 @@ npm install
 For e2e testing, install Playwright browsers:
 
 ```bash
-npm run playwright:install
+bun run playwright:install
 ```
 
 This will download Chromium, Firefox, and WebKit browsers needed for testing.
@@ -44,16 +44,16 @@ This will download Chromium, Firefox, and WebKit browsers needed for testing.
 
 ```bash
 # Run tests once
-npm run test
+bun run test
 
 # Run tests in watch mode (recommended for development)
-npm run test:watch
+bun run test:watch
 
 # Run tests with UI dashboard
-npm run test:ui
+bun run test:ui
 
 # Generate coverage report
-npm run test:coverage
+bun run test:coverage
 ```
 
 ### Writing Unit Tests
@@ -138,22 +138,22 @@ vi.mock('next/navigation', () => ({
 
 ```bash
 # Run e2e tests (headless)
-npm run test:e2e
+bun run test:e2e
 
 # Run with UI mode (recommended for development)
-npm run test:e2e:ui
+bun run test:e2e:ui
 
 # Run in headed mode (see browser)
-npm run test:e2e:headed
+bun run test:e2e:headed
 
 # Debug mode
-npm run test:e2e:debug
+bun run test:e2e:debug
 
 # Run specific test file
-npx playwright test e2e/home.spec.ts
+bunx playwright test e2e/home.spec.ts
 
 # Run specific browser
-npx playwright test --project=chromium
+bunx playwright test --project=chromium
 ```
 
 ### Writing E2E Tests
@@ -224,16 +224,16 @@ Playwright configuration is in `playwright.config.ts`:
 
 | Command | Description |
 |---------|-------------|
-| `npm run test` | Run unit tests once |
-| `npm run test:watch` | Run unit tests in watch mode |
-| `npm run test:ui` | Run unit tests with Vitest UI |
-| `npm run test:coverage` | Generate coverage report |
-| `npm run test:e2e` | Run e2e tests |
-| `npm run test:e2e:ui` | Run e2e tests with Playwright UI |
-| `npm run test:e2e:headed` | Run e2e tests in headed mode |
-| `npm run test:e2e:debug` | Debug e2e tests |
-| `npm run test:all` | Run all tests (unit + e2e) |
-| `npm run playwright:install` | Install Playwright browsers |
+| `bun run test` | Run unit tests once |
+| `bun run test:watch` | Run unit tests in watch mode |
+| `bun run test:ui` | Run unit tests with Vitest UI |
+| `bun run test:coverage` | Generate coverage report |
+| `bun run test:e2e` | Run e2e tests |
+| `bun run test:e2e:ui` | Run e2e tests with Playwright UI |
+| `bun run test:e2e:headed` | Run e2e tests in headed mode |
+| `bun run test:e2e:debug` | Debug e2e tests |
+| `bun run test:all` | Run all tests (unit + e2e) |
+| `bun run playwright:install` | Install Playwright browsers |
 
 ## Best Practices
 
@@ -277,22 +277,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:coverage
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bun run test:coverage
 
   e2e-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npx playwright install --with-deps
-      - run: npm run test:e2e
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bunx playwright install --with-deps
+      - run: bun run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -316,7 +312,7 @@ jobs:
 
 **Browsers not installed**:
 ```bash
-npm run playwright:install
+bun run playwright:install
 ```
 
 **Tests timing out**:
@@ -331,7 +327,7 @@ npm run playwright:install
 
 ## Coverage Reports
 
-After running `npm run test:coverage`, open the HTML report:
+After running `bun run test:coverage`, open the HTML report:
 
 ```bash
 open coverage/index.html

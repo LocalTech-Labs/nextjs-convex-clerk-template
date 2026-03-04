@@ -1,5 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { PLAN_FEATURES, PLANS } from "@/convex/lib/constants";
+
+export const metadata: Metadata = {
+	title: "Launch Your SaaS Fast",
+	description:
+		"Everything you need to launch your micro-SaaS. Authentication, payments, database, analytics, and deployment — all pre-configured.",
+	openGraph: {
+		title: "YourApp - Launch Your SaaS Fast",
+		description:
+			"Everything you need to launch your micro-SaaS. Authentication, payments, database, analytics, and deployment — all pre-configured.",
+	},
+};
 
 export default function HomePage() {
 	return (
@@ -147,28 +160,21 @@ const FEATURES = [
 
 const PRICING = [
 	{
-		name: "Free",
+		name: PLANS.free.name,
 		description: "Perfect for getting started",
 		price: "$0",
 		period: null,
 		featured: false,
 		cta: "Get Started",
-		features: ["Up to 100 items", "Basic analytics", "Community support", "1 project"],
+		features: PLAN_FEATURES.map((f) => `${f.name}: ${f.free}`),
 	},
 	{
-		name: "Pro",
+		name: PLANS.pro.name,
 		description: "For serious makers",
 		price: "$9",
 		period: "month",
 		featured: true,
 		cta: "Upgrade to Pro",
-		features: [
-			"Unlimited items",
-			"Advanced analytics",
-			"Priority support",
-			"Unlimited projects",
-			"API access",
-			"Custom domain",
-		],
+		features: PLAN_FEATURES.map((f) => `${f.name}: ${f.pro}`),
 	},
 ];

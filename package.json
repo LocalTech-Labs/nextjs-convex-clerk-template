@@ -23,7 +23,7 @@
 		"deploy": "opennextjs-cloudflare deploy",
 		"playwright:install": "playwright install --with-deps",
 		"analyze": "ANALYZE=true next build",
-		"cldyo": "claude --dangerously-skip-permissions --model claude-opus-4-6"
+		"cc:yolo": "claude --dangerously-skip-permissions"
 	},
 	"dependencies": {
 		"@clerk/backend": "^2.31.0",
@@ -59,6 +59,7 @@
 		"clsx": "^2.1.1",
 		"cmdk": "^1.1.1",
 		"convex": "^1.29.1",
+		"convex-helpers": "^0.1.114",
 		"date-fns": "^4.1.0",
 		"embla-carousel-react": "^8.6.0",
 		"input-otp": "^1.4.2",

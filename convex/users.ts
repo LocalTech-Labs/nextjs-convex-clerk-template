@@ -1,7 +1,7 @@
 import type { UserJSON } from "@clerk/backend";
 import type { Validator } from "convex/values";
 import { v } from "convex/values";
-import type { QueryCtx } from "./_generated/server";
+import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { internalMutation, query } from "./_generated/server";
 
 export const current = query({
@@ -42,13 +42,13 @@ export const deleteFromClerk = internalMutation({
 	},
 });
 
-export async function getCurrentUserOrThrow(ctx: QueryCtx) {
+export async function getCurrentUserOrThrow(ctx: QueryCtx | MutationCtx) {
 	const userRecord = await getCurrentUser(ctx);
 	if (!userRecord) throw new Error("Can't get current user");
 	return userRecord;
 }
 
-export async function getCurrentUser(ctx: QueryCtx) {
+export async function getCurrentUser(ctx: QueryCtx | MutationCtx) {
 	const identity = await ctx.auth.getUserIdentity();
 	if (identity === null) {
 		return null;
@@ -56,7 +56,7 @@ export async function getCurrentUser(ctx: QueryCtx) {
 	return await userByExternalId(ctx, identity.subject);
 }
 
-async function userByExternalId(ctx: QueryCtx, externalId: string) {
+async function userByExternalId(ctx: QueryCtx | MutationCtx, externalId: string) {
 	return await ctx.db
 		.query("users")
 		.withIndex("byExternalId", (q) => q.eq("externalId", externalId))
