@@ -3,7 +3,7 @@
  * Use these to mock Convex queries, mutations, and actions
  */
 
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
 /**
  * Mock a Convex query
@@ -11,7 +11,7 @@ import { vi } from 'vitest';
  * const mockGetUser = mockConvexQuery({ id: '123', name: 'Test User' });
  */
 export const mockConvexQuery = (returnValue: any) => {
-  return vi.fn().mockResolvedValue(returnValue);
+	return vi.fn().mockResolvedValue(returnValue);
 };
 
 /**
@@ -20,7 +20,7 @@ export const mockConvexQuery = (returnValue: any) => {
  * const mockCreateUser = mockConvexMutation({ id: '123' });
  */
 export const mockConvexMutation = (returnValue: any) => {
-  return vi.fn().mockResolvedValue(returnValue);
+	return vi.fn().mockResolvedValue(returnValue);
 };
 
 /**
@@ -29,41 +29,40 @@ export const mockConvexMutation = (returnValue: any) => {
  * const mockSendEmail = mockConvexAction({ success: true });
  */
 export const mockConvexAction = (returnValue: any) => {
-  return vi.fn().mockResolvedValue(returnValue);
+	return vi.fn().mockResolvedValue(returnValue);
 };
 
 /**
  * Mock the useQuery hook from Convex
  */
 export const mockUseQuery = (data: any, loading = false, error?: Error) => {
-  return vi.fn(() => {
-    if (error) throw error;
-    return loading ? undefined : data;
-  });
+	return vi.fn(() => {
+		if (error) throw error;
+		return loading ? undefined : data;
+	});
 };
 
 /**
  * Mock the useMutation hook from Convex
  */
 export const mockUseMutation = () => {
-  return vi.fn(() => vi.fn());
+	return vi.fn(() => vi.fn());
 };
 
 /**
  * Mock the useAction hook from Convex
  */
 export const mockUseAction = () => {
-  return vi.fn(() => vi.fn());
+	return vi.fn(() => vi.fn());
 };
 
 /**
  * Example usage in tests:
- * 
+ *
  * import { mockUseQuery } from '@/test/mocks/convex';
- * 
+ *
  * vi.mock('convex/react', () => ({
  *   useQuery: mockUseQuery({ users: [{ id: '1', name: 'Test' }] }),
  *   useMutation: mockUseMutation(),
  * }));
  */
-

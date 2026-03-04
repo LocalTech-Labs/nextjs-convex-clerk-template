@@ -21,7 +21,10 @@ jobs:
       
       - name: Install dependencies
         run: bun install --frozen-lockfile
-      
+
+      - name: Check code with Biome
+        run: bunx biome check .
+
       - name: Run unit tests
         run: bun run test -- --run
       

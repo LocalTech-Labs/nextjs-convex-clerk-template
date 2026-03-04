@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(bun run dev)",
+      "Bash(bun run build)",
+      "Bash(bun run check)",
+      "Bash(bun run format)",
+      "Bash(bun run lint)",
+      "Bash(bun run test*)",
+      "Bash(bun run build:worker)",
+      "Bash(bun run preview)",
+      "Bash(bun run analyze)",
+      "Bash(bun install*)",
+      "Bash(bun add *)",
+      "Bash(bun remove *)",
+      "Bash(bunx shadcn@latest add *)",
+      "Bash(bunx convex *)",
+      "Bash(bunx wrangler *)",
+      "Bash(bunx playwright install*)",
+      "Bash(npx tsc *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(git stash*)",
+      "Bash(bash .claude/skills/*)",
+      "Bash(bash .agents/skills/*)",
+      "Bash(diff *)",
+      "Bash(cp *)"
+    ],
+    "deny": [
+      "Read(.env.local)",
+      "Read(.env)",
+      "Read(.env.production)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-biome.sh",
+            "timeout": 60,
+            "statusMessage": "Running Biome checks..."
+          },
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-tests.sh",
+            "timeout": 300,
+            "statusMessage": "Running unit tests...",
+            "async": true
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "product-planning@adam-slaker-claude-code-marketplace": true,
+    "standards-os@adam-slaker-claude-code-marketplace": true,
+    "ux-personas@adam-slaker-claude-code-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "adam-slaker-claude-code-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "aslaker/aslaker-claude-code-marketplace"
+      }
+    }
+  }
+}
