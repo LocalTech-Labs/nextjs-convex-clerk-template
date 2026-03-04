@@ -92,12 +92,13 @@ ENV PATH="/home/node/.bun/bin:$PATH"
 # Install Claude Code globally via npm
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
 
-# Install Playwright system dependencies and browsers (requires root for deps)
+# Install Playwright system dependencies and Google Chrome (requires root)
 USER root
 RUN npx playwright install-deps && \
+  npx playwright@1.56.1 install chrome && \
   rm -rf /tmp/*
 
-# Install Playwright browsers matching the project's @playwright/test version
+# Install Playwright bundled browsers matching the project's @playwright/test version
 USER node
 RUN npx playwright@1.56.1 install
 
