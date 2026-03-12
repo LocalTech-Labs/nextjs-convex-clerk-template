@@ -22,6 +22,7 @@
 		"preview": "opennextjs-cloudflare preview",
 		"deploy": "opennextjs-cloudflare deploy",
 		"playwright:install": "playwright install --with-deps",
+		"setup": "bun run scripts/setup-wizard.ts",
 		"analyze": "ANALYZE=true next build",
 		"cc:yolo": "claude --dangerously-skip-permissions"
 	},

@@ -35,6 +35,7 @@ CATEGORY_A_FILES=(
 	"test/fixtures/index.ts"
 	"test/utils/test-utils.tsx"
 	".gitignore"
+	"scripts/setup-wizard.ts"
 )
 
 # Category B: Caution files — individual review with diffs

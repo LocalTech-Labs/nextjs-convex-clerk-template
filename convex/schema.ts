@@ -9,4 +9,6 @@ export default defineSchema({
 		externalId: v.string(),
 		plan: v.optional(v.union(v.literal("free"), v.literal("pro"))),
 	}).index("byExternalId", ["externalId"]),
+
+	// --- Generated tables below ---
 });

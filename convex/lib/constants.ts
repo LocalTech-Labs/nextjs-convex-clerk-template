@@ -1,3 +1,4 @@
+// Template plan limits — replace with product-specific limits
 export const PLANS = {
 	free: {
 		name: "Free",
@@ -12,6 +13,8 @@ export const PLANS = {
 		maxTeamMembers: 10,
 	},
 } as const;
+
+// --- Generated plan limits above ---
 
 export const PLAN_FEATURES = [
 	{
@@ -45,3 +48,5 @@ export const PLAN_FEATURES = [
 		pro: "Yes",
 	},
 ] as const;
+
+// --- Generated plan features above ---
