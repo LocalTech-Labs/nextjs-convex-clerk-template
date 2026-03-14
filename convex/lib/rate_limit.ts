@@ -6,6 +6,8 @@ import { defineRateLimits } from "convex-helpers/server/rateLimit";
  *
  * Configure per-mutation limits here, then call `rateLimit(ctx, { name, key })`
  * at the start of any mutation handler.
+ *
+ * Usage example: see `convex/users.ts` → `updateProfile` mutation.
  */
 export const { rateLimit, checkRateLimit, resetRateLimit } = defineRateLimits({
 	// General mutation rate limit: 10 requests per second, burst of 20

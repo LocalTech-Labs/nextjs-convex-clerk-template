@@ -133,19 +133,11 @@ This uses `concurrently` to start both Convex and Next.js. Visit [http://localho
 
 ## Step 7: Rebrand for Your App
 
-### App Name (find-and-replace "YourApp")
+### App Name and Branding
 
-These files contain the placeholder name "YourApp":
+Edit `lib/config.ts` to set your app name, description, URL, support email, and social links. All headers, footers, metadata, and SEO files read from this single file.
 
-| File | What to change |
-|------|----------------|
-| `app/layout.tsx` | `metadata.title`, `metadata.description`, `metadata.openGraph.siteName` |
-| `components/layout/header.tsx` | Logo text in the app header |
-| `components/marketing/marketing-header.tsx` | Logo text in the marketing header |
-| `components/marketing/footer.tsx` | Footer links, copyright text, social URLs |
-| `components/marketing/structured-data.tsx` | JSON-LD `name` and `description` |
-| `app/sitemap.ts` | `baseUrl` fallback (also set via `NEXT_PUBLIC_APP_URL`) |
-| `app/robots.ts` | `baseUrl` fallback |
+You can also override `APP_NAME` and `APP_URL` at deploy time via `NEXT_PUBLIC_APP_NAME` and `NEXT_PUBLIC_APP_URL` environment variables.
 
 ### Colors
 

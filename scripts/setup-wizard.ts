@@ -438,7 +438,12 @@ function phaseVerify(): void {
 		"CLERK_WEBHOOK_SECRET",
 	];
 
-	const optional = ["NEXT_PUBLIC_POSTHOG_KEY", "NEXT_PUBLIC_POSTHOG_HOST", "NEXT_PUBLIC_APP_URL"];
+	const optional = [
+		"NEXT_PUBLIC_POSTHOG_KEY",
+		"NEXT_PUBLIC_POSTHOG_HOST",
+		"NEXT_PUBLIC_APP_URL",
+		"NEXT_PUBLIC_APP_NAME",
+	];
 
 	let allGood = true;
 

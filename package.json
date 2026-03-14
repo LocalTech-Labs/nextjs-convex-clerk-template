@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"predev": "bun run scripts/check-env.ts",
 		"dev": "concurrently --names \"CONVEX,NEXT\" --prefix-colors \"auto\" \"convex dev\" \"next dev\"",
 		"build": "next build",
 		"start": "next start",

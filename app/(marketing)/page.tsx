@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PLAN_FEATURES, PLANS } from "@/convex/lib/constants";
+import { APP_NAME } from "@/lib/config";
 
 export const metadata: Metadata = {
 	title: "Launch Your SaaS Fast",
 	description:
 		"Everything you need to launch your micro-SaaS. Authentication, payments, database, analytics, and deployment — all pre-configured.",
 	openGraph: {
-		title: "YourApp - Launch Your SaaS Fast",
+		title: `${APP_NAME} - Launch Your SaaS Fast`,
 		description:
 			"Everything you need to launch your micro-SaaS. Authentication, payments, database, analytics, and deployment — all pre-configured.",
 	},
@@ -111,7 +112,7 @@ export default function HomePage() {
 						Ready to launch your SaaS?
 					</h2>
 					<p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-						Join hundreds of makers who ship faster with YourApp.
+						Join hundreds of makers who ship faster with {APP_NAME}.
 					</p>
 					<Button size="lg" className="mt-8" asChild>
 						<Link href="/dashboard">Start Building Free</Link>

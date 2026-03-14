@@ -51,11 +51,7 @@ This starts both the Convex dev server and Next.js concurrently. Open [http://lo
 
 ## Customization
 
-Replace `TemplateApp` with your project name in:
-- `components/layout/header.tsx` (header title)
-- `app/layout.tsx` (metadata)
-- `app/page.tsx` (welcome text)
-- `package.json` (`name` field)
+Edit `lib/config.ts` to set your app name, description, URL, support email, and social links. All headers, footers, metadata, and SEO files read from this single config file. You can also override `APP_NAME` at deploy time via the `NEXT_PUBLIC_APP_NAME` environment variable.
 
 ## Scripts
 

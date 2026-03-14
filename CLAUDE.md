@@ -35,7 +35,7 @@ components/
   ui/                    # shadcn/ui components
 convex/                  # Backend: schema, queries, mutations, HTTP routes
 hooks/                   # Custom React hooks
-lib/                     # Utilities (cn() for classNames)
+lib/                     # Utilities (cn() for classNames) + config.ts (app branding)
 test/                    # Test utilities, mocks, fixtures
 e2e/                     # Playwright E2E tests
 ```
@@ -52,6 +52,7 @@ e2e/                     # Playwright E2E tests
 - Clerk Billing handles payments. Configure plans in the Clerk dashboard, not in code. Plan data syncs to Convex via the existing Clerk user webhook.
 - Route groups `(marketing)` and `(app)` share the root layout but have separate sub-layouts.
 - Tailwind v4 uses CSS-based config in `globals.css`, not `tailwind.config.ts`.
+- `middleware.ts` uses Clerk's `clerkMiddleware` which triggers a Next.js 16 deprecation warning. This is expected — Clerk hasn't shipped a non-middleware alternative yet.
 
 ## New Feature Checklist
 
@@ -94,5 +95,9 @@ e2e/                     # Playwright E2E tests
 ### Optional - PostHog
 - `NEXT_PUBLIC_POSTHOG_KEY` - Project API key
 - `NEXT_PUBLIC_POSTHOG_HOST` - API host (default: us.i.posthog.com)
+
+### Optional - Branding
+- `NEXT_PUBLIC_APP_NAME` - App name shown in headers/footers/metadata (default: "My App")
+- `NEXT_PUBLIC_APP_URL` - Canonical URL for sitemap/robots/OG metadata
 
 See `.env.example` for all variables with descriptions.

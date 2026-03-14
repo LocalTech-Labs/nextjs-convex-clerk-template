@@ -1,3 +1,8 @@
+/**
+ * Next.js 16 deprecates middleware.ts as the primary auth interception pattern.
+ * Clerk's clerkMiddleware is still the recommended approach until Clerk ships
+ * a non-middleware alternative. The deprecation warning is expected and safe to ignore.
+ */
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isPublicRoute = createRouteMatcher([

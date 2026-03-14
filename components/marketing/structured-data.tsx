@@ -1,11 +1,13 @@
+import { APP_DESCRIPTION, APP_NAME } from "@/lib/config";
+
 export function SaaSStructuredData() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "YourApp",
+		name: APP_NAME,
 		applicationCategory: "BusinessApplication",
 		operatingSystem: "Web",
-		description: "The fastest way to launch your micro-SaaS.",
+		description: APP_DESCRIPTION,
 		offers: {
 			"@type": "AggregateOffer",
 			lowPrice: "0",

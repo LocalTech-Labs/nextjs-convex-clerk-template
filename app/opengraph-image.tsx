@@ -1,8 +1,9 @@
 import { ImageResponse } from "next/og";
+import { APP_NAME } from "@/lib/config";
 
 export const runtime = "edge";
 
-export const alt = "YourApp - Launch Your SaaS Fast";
+export const alt = `${APP_NAME} - Launch Your SaaS Fast`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,7 +37,7 @@ export default function OGImage() {
 						letterSpacing: "-2px",
 					}}
 				>
-					YourApp
+					{APP_NAME}
 				</div>
 				<div
 					style={{

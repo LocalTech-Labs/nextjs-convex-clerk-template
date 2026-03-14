@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/providers";
+import { APP_DESCRIPTION, APP_NAME, APP_URL } from "@/lib/config";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -14,16 +15,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://yourapp.com"),
+	metadataBase: new URL(APP_URL),
 	title: {
-		default: "YourApp - Launch Your SaaS Fast",
-		template: "%s | YourApp",
+		default: `${APP_NAME} - Launch Your SaaS Fast`,
+		template: `%s | ${APP_NAME}`,
 	},
-	description: "The fastest way to launch your micro-SaaS. Built with Next.js, Convex, and Clerk.",
+	description: APP_DESCRIPTION,
 	openGraph: {
 		type: "website",
 		locale: "en_US",
-		siteName: "YourApp",
+		siteName: APP_NAME,
 	},
 	twitter: {
 		card: "summary_large_image",

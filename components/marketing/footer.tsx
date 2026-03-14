@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { APP_NAME, SOCIAL_LINKS, SUPPORT_EMAIL } from "@/lib/config";
 
 export function Footer() {
 	return (
@@ -44,40 +45,48 @@ export function Footer() {
 						<h3 className="font-semibold text-sm">Support</h3>
 						<ul className="mt-3 space-y-2 text-sm text-muted-foreground">
 							<li>
-								<a href="mailto:support@yourapp.com" className="hover:text-foreground">
+								<a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-foreground">
 									Contact
 								</a>
 							</li>
 						</ul>
 					</div>
-					<div>
-						<h3 className="font-semibold text-sm">Connect</h3>
-						<ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-							<li>
-								<a
-									href="https://twitter.com/yourapp"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="hover:text-foreground"
-								>
-									Twitter
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://github.com/yourapp"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="hover:text-foreground"
-								>
-									GitHub
-								</a>
-							</li>
-						</ul>
-					</div>
+					{(SOCIAL_LINKS.twitter || SOCIAL_LINKS.github) && (
+						<div>
+							<h3 className="font-semibold text-sm">Connect</h3>
+							<ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+								{SOCIAL_LINKS.twitter && (
+									<li>
+										<a
+											href={SOCIAL_LINKS.twitter}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="hover:text-foreground"
+										>
+											Twitter
+										</a>
+									</li>
+								)}
+								{SOCIAL_LINKS.github && (
+									<li>
+										<a
+											href={SOCIAL_LINKS.github}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="hover:text-foreground"
+										>
+											GitHub
+										</a>
+									</li>
+								)}
+							</ul>
+						</div>
+					)}
 				</div>
 				<div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
-					<p>&copy; {new Date().getFullYear()} YourApp. All rights reserved.</p>
+					<p>
+						&copy; {new Date().getFullYear()} {APP_NAME}. All rights reserved.
+					</p>
 				</div>
 			</div>
 		</footer>

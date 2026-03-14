@@ -2,7 +2,8 @@ import type { UserJSON } from "@clerk/backend";
 import type { Validator } from "convex/values";
 import { v } from "convex/values";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
-import { internalMutation, query } from "./_generated/server";
+import { internalMutation, mutation, query } from "./_generated/server";
+import { rateLimit } from "./lib/rate_limit";
 
 export const current = query({
 	args: {},
@@ -39,6 +40,19 @@ export const deleteFromClerk = internalMutation({
 		} else {
 			console.warn(`Can't delete user, none found for Clerk ID: ${clerkUserId}`);
 		}
+	},
+});
+
+/** Rate-limited user-facing mutation example. */
+export const updateProfile = mutation({
+	args: { name: v.string() },
+	async handler(ctx, { name }) {
+		const identity = await ctx.auth.getUserIdentity();
+		if (!identity) throw new Error("Not authenticated");
+		await rateLimit(ctx, { name: "mutation", key: identity.subject });
+		const user = await userByExternalId(ctx, identity.subject);
+		if (!user) throw new Error("User not found");
+		await ctx.db.patch(user._id, { name });
 	},
 });
 

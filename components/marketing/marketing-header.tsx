@@ -5,6 +5,7 @@ import { Authenticated, Unauthenticated } from "convex/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { APP_NAME } from "@/lib/config";
 
 export function MarketingHeader() {
 	return (
@@ -13,12 +14,12 @@ export function MarketingHeader() {
 				<Link href="/" className="mr-6 flex items-center space-x-2">
 					<Image
 						src="/next.svg"
-						alt="YourApp logo"
+						alt={`${APP_NAME} logo`}
 						width={24}
 						height={24}
 						className="dark:invert"
 					/>
-					<span className="font-bold text-lg">YourApp</span>
+					<span className="font-bold text-lg">{APP_NAME}</span>
 				</Link>
 				<nav className="flex flex-1 items-center gap-6 text-sm">
 					<Link
